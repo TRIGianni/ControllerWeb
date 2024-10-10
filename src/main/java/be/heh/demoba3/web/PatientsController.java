@@ -1,6 +1,7 @@
 package be.heh.demoba3.web;
 
 import be.heh.demoba3.model.Patient;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -40,7 +41,7 @@ public class PatientsController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createPatient(
+    public ResponseEntity<Void> createPatient(@Valid
             @RequestBody PatientRequest patientRequest) {
 
         //stocke
