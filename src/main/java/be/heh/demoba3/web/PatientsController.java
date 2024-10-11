@@ -1,9 +1,14 @@
 package be.heh.demoba3.web;
 
 import be.heh.demoba3.model.Patient;
+import be.heh.demoba3.service.PatientService;
+import be.heh.demoba3.service.PatientUseCase;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -16,10 +21,12 @@ import static java.util.stream.Collectors.toList;
 
 @RestController
 @RequestMapping("/patients")
+@RequiredArgsConstructor
 public class PatientsController {
 
-    private static final Logger log = LoggerFactory.getLogger(PatientsController.class);
     private List<Patient> patients = new ArrayList<>();
+
+    private final PatientUseCase patientUseCase;
 
     @GetMapping
     public ResponseEntity<List<PatientResponse>> getAllPatients() {
@@ -27,16 +34,19 @@ public class PatientsController {
                 .map(patient -> PatientResponse.fromEntity(patient))
                 .collect(toList());
         return ResponseEntity
-                .status(HttpStatus.ACCEPTED)
+                .status(HttpStatus.OK)
                 .body(listPatients);
     }
 
     @GetMapping("/query")
     public ResponseEntity<PatientResponse> getOnePatient(@RequestParam("id") Long id) {
-        Patient patient = patients.get(Math.toIntExact(id)-1);
+
+        Patient patient = patientUseCase.findById(id);
+
+        //Patient patient = patients.get(Math.toIntExact(id)-1);
         PatientResponse patientResponse = PatientResponse.fromEntity(patient);
         return ResponseEntity
-                .status(HttpStatus.ACCEPTED)
+                .status(HttpStatus.OK)
                 .body(patientResponse);
     }
 
@@ -48,6 +58,7 @@ public class PatientsController {
         Patient patient = patientRequest.toEntity();
         patient.setId(1L);
         patients.add(patient);
+
         //Data envoyée
         String url = "http://localhost:8080/patients/" + patient.getId();
 
