@@ -23,6 +23,10 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+<<<<<<< HEAD
+=======
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+>>>>>>> etape5
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(PatientsController.class)
@@ -52,7 +56,10 @@ public class PatientsControllerTest {
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/patients/query?id=1");
         mockMvc.perform(requestBuilder)
-                .andExpect(status().isOk());
-
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.firstName", equalTo("toto")))
+                .andExpect(jsonPath("$.lastName", equalTo("titi")))
+                .andExpect(jsonPath("$.email", equalTo("toto@hotmail.com")))
+                .andExpect(jsonPath("$.id", equalTo(1)));
     }
 }
