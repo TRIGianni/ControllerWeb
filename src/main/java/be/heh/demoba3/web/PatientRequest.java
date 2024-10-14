@@ -1,13 +1,12 @@
 package be.heh.demoba3.web;
 
 import be.heh.demoba3.model.Patient;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.UUID;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -27,22 +26,30 @@ public class PatientRequest {
     @NotBlank
     private String lastName;
 
+    @Min(value = 18)
+    @Max(value = 120)
     private Integer age;
 
     private List<String> preexistingConditions;
 
+    @AssertTrue
     private Boolean consentGiven;
 
+    @Positive
     private Integer policyNumber;
 
+    @FutureOrPresent
     private LocalDate registrationDate;
 
+    @Past
     private LocalDate dateOfBirth;
-
+    @Email
     private String email;
 
+    @Pattern(regexp = "(A|B|AB|O)[+-]")
     private String bloodType;
 
+    @UUID
     private String insurerId;
 
     public Patient toEntity() {
