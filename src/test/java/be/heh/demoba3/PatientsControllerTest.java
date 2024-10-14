@@ -23,10 +23,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-<<<<<<< HEAD
-=======
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
->>>>>>> etape5
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(PatientsController.class)
