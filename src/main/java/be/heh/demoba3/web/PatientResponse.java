@@ -27,7 +27,7 @@ public class PatientResponse {
     private String email;
     private String bloodType;
     private Boolean consentGiven;
-    private List<String> preexistingConditions;
+    //private List<String> preexistingConditions;
     private Integer policyNumber;
     private LocalDate registrationDate;
     private LocalDate dateOfBirth;
@@ -41,7 +41,7 @@ public class PatientResponse {
                 .middleName(patient.getMiddleName())
                 .lastName(patient.getLastName())
                 .age(patient.getAge())
-                .preexistingConditions(patient.getPreexistingConditions())
+                //.preexistingConditions(patient.getPreexistingConditions())
                 .email(patient.getEmail())
                 .bloodType(patient.getBloodType())
                 .consentGiven(patient.getConsentGiven())

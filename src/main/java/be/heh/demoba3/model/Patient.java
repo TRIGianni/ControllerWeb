@@ -30,7 +30,7 @@ public class Patient {
 
     private Boolean consentGiven;
 
-    private List<String> preexistingConditions;
+    //private List<String> preexistingConditions;
 
     private Integer policyNumber;
 

@@ -54,7 +54,7 @@ public class PatientRequest {
                 .email(email)
                 .bloodType(bloodType)
                 .consentGiven(consentGiven)
-                .preexistingConditions(preexistingConditions)
+    //            .preexistingConditions(preexistingConditions)
                 .policyNumber(policyNumber)
                 .registrationDate(registrationDate)
                 .dateOfBirth(dateOfBirth)
