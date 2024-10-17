@@ -29,6 +29,12 @@ dependencies {
     runtimeOnly 'com.mysql:mysql-connector-j'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 
+    testImplementation "org.junit.jupiter:junit-jupiter:5.8.1"
+    testImplementation "org.testcontainers:testcontainers:1.20.2"
+    testImplementation "org.testcontainers:junit-jupiter:1.20.2"
+
+    implementation platform('org.testcontainers:testcontainers-bom:1.20.2') //import bom
+    testImplementation('org.testcontainers:mysql') //no version specified
 
 }
 
