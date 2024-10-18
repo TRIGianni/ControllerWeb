@@ -56,15 +56,15 @@ public class PatientsController {
 
         //stocke
         Patient patient = patientRequest.toEntity();
-        patient.setId(1L);
-        patients.add(patient);
-
+        /*patient.setId(1L);
+        patients.add(patient);*/
+        patientUseCase.save(patient);
         //Data envoyée
-        String url = "http://localhost:8080/patients/" + patient.getId();
+        //String url = "http://localhost:8080/patients/" + patient.getId();
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .header("Location",url)
+             //   .header("Location",url)
                 .build();
     }
     @DeleteMapping("/{id}")

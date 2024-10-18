@@ -7,6 +7,6 @@ import java.util.List;
 public interface PatientUseCase {
     Patient findById(Long id);
     List<Patient> findAll();
-    Patient save(Patient patient);
+    void save(Patient patient);
     void delete(Long id);
 }
